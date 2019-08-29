@@ -118,8 +118,8 @@
 <delete file="deploy.zip"/>
 <zip destfile="deploy.zip">
 	<!-- Append all the components that needs to be deployed in the Partial Deployment-->
-<fileset dir="force-app/main" includes="../../../manifest/package.xml"/>
-<fileset dir="force-app/main" includes="objects/Account/fields/CustomerPriority__c.field-meta.xml"/>
+<fileset dir="." includes="../../../manifest/package.xml"/>
+<fileset dir="." includes="objects/Account/fields/CustomerPriority__c.field-meta.xml"/>
 <!--<fileset dir="src" includes="classes/PenaltySuspensionsTest.cls-meta.xml"/>-->
 </zip>
 <echo message = "${sf.username}" />
