@@ -1,0 +1,12 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="ParkLocator">
+    <lightning:empApi aura:id="empApi" />
+    <aura:attribute name="channel" type="String" default="/event/Notification__e"/>
+    <aura:attribute name="subscription" type="Map"/>
+    <aura:attribute name="message" type="String"/>
+    <aura:attribute name="vfHost" type="String" default="uditsharma-dev-ed--c.ap5.visual.force.com"/>
+    <aura:attribute name="userId" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+    Your message : - {!v.message}<br/>
+    <lightning:button variant="brand" label="Submit" title="Submit" onclick="{! c.handleClick }" />
+    <iframe aura:id="vfFrame" src="/apex/ParkEvent" frameborder="0" width="0" height="0"/>
+</aura:component>

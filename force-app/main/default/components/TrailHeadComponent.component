@@ -1,0 +1,109 @@
+<apex:component controller="TrailHeadController" access="global">
+    <html>
+        <style type="text/css">
+            body{
+            margin: 1rem;
+            }
+            table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            }            
+            td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            }
+            th{background-color: #0080ff}
+            
+            tr:nth-child(even) {
+            background-color: #dddddd;
+            }
+            .champ-heading{
+            font-weight: bold;
+            font-size: 1rem;
+            }
+            .individual-details p{
+            margin: 0.2rem 0;
+            }
+            .column-head{
+            font-weight: bold;
+            }
+            .head-name{
+            font-size: 1.2rem;
+            }
+        </style>
+        <body>
+            <apex:outputPanel ><!--rendered="{!IF(DAY(TODAY()) == 1, true, false)}"-->
+                <p class="champ-heading">Monthly Champions</p>
+                <table>
+                    <!--<tr>
+                    <th>Name</th>
+                    <th>Badges Earned This Month</th>
+                    <th>Points Earned This Month</th>
+                    </tr> -->
+                    <apex:repeat var="con" value="{!ListOfMonthlyChampions}">
+                        <tr>
+                            <!--<td>{!con.Name}</td>
+                            <td>{!con.MonthlyBadgeDiff__c}</td>
+                            <td>{!con.MonthlyPointDiff__c}</td>-->
+                            <td>
+                                <div class="individual-details">
+                                    <p class="head-name">{!con.Name}</p>
+                                    <p><span class="column-head">Badges: </span><span>{!con.MonthlyBadgeDiff__c}</span></p>
+                                    <p><span class="column-head">Points: </span><span>{!con.MonthlyPointDiff__c}</span></p>
+                                </div>
+                            </td>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </apex:outputPanel>
+            <apex:outputPanel ><!--rendered="{!IF(WEEKDAY(TODAY()) == 2, true, false)}"-->
+                <p class="champ-heading">Weekly Champions</p>
+                <table>
+                    <!-- <tr>
+                        <th>Name</th>
+                        <th>Badges Earned This Week</th>
+                        <th>Points Earned This Week</th>
+                    </tr> -->
+                    <apex:repeat var="con" value="{!ListOfWeeklyChampions}">
+                        <tr>
+                            <!-- <td>{!con.Name}</td>
+                            <td>{!con.WeeklyBadgeDiff__c}</td>
+                            <td>{!con.WeeklyPointDiff__c}</td> -->
+                            <div class="individual-details">
+                                    <p class="head-name">{!con.Name}</p>
+                                    <p><span class="column-head">Badges: </span><span>{!con.WeeklyBadgeDiff__c}</span></p>
+                                    <p><span class="column-head">Points: </span><span>{!con.WeeklyPointDiff__c}</span></p>
+                                </div>
+                        </tr>
+                    </apex:repeat>
+                </table>
+            </apex:outputPanel>
+            <apex:outputPanel >
+                <p class="champ-heading">Weekly List</p>
+                <table>
+                    <!-- <tr>
+                        <th>Name</th>
+                        <th>Total Badges</th>
+                        <th>Total Points</th>
+                    </tr> -->
+                    <apex:repeat var="contact" value="{!ListOfContacts}">
+                        <td>
+                          <!--  <td>{!contact.Name}</td>
+                            <td>{!contact.TotalTHBadges__c}</td>
+                            <td>{!contact.TotalTHPoints__c}</td> -->
+                            
+                            <div class="individual-details">
+                                <p class="head-name">{!contact.Name}</p>
+                                <p><span class="column-head">Badges: </span><span>{!contact.TotalTHBadges__c}</span></p>
+                                <p><span class="column-head">Points: </span><span>{!contact.TotalTHPoints__c}</span></p>
+                            </div>
+                        </td>
+                    </apex:repeat>
+                </table>
+            </apex:outputPanel>
+        </body>
+    </html>
+    
+</apex:component>

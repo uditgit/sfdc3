@@ -1,0 +1,32 @@
+<apex:page id="pageId" showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" 
+           controller="ParkLocator">
+    <html>
+        <head>
+            <script>
+            var origin = "https://uditsharma-dev-ed.lightning.force.com";
+            window.addEventListener("message", function(event){
+                if(event.origin !== origin){
+                    console.log('Not the correct origin - '+ event.origin);
+                    return;
+                }
+                var country = escapeHTML(event.data);
+                console.log('Country - '+country);
+                Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.ParkLocator.parkLocator}', country, function(result, event){
+                    console.log('Result - '+ result);
+                    if(event.status && result!=null){
+                        console.log('Result size - '+ result.length);
+                        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.ParkLocator.fireNotificationEvent}', result[0], function(result, event){
+                            console.log('Notification fired - '+ result);
+                        });
+                    }
+                });
+            }, false);
+            </script>
+            
+        </head>
+    </html>
+    <!-- <apex:form>
+<apex:commandButton action="{!parkLocator}"/>
+</apex:form>-->
+    
+</apex:page>

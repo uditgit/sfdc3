@@ -1,0 +1,9 @@
+<apex:page standardController="Account">
+  Account Name = {!Account.Name}<br/>
+  Account Country = {!Account.BillingCountry}<br/>
+  Hello {!$User.FirstName} {!$User.LastName}
+  <apex:form >
+      <apex:inputField value="{!Account.Name}"/>
+      <apex:commandButton value="Save" action="{!quickSave}"/>
+  </apex:form>
+</apex:page>
